@@ -33,6 +33,20 @@ public class Livres {
         this.note = note;
     }
 
+    @Override
+    public String toString() {
+        return "Livres{" +
+                "id_livre=" + id_livre +
+                ", edition='" + edition + '\'' +
+                ", titre='" + titre + '\'' +
+                ", auteur='" + auteur + '\'' +
+                ", resume='" + resume + '\'' +
+                ", date_parution=" + date_parution +
+                ", date_ajout=" + date_ajout +
+                ", note=" + note +
+                '}';
+    }
+
     // Getters et Setters
     public Long getId_livre() {
         return id_livre;
