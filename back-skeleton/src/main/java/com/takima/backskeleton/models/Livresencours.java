@@ -4,35 +4,44 @@ import jakarta.persistence.*;
 
 @Entity
 public class Livresencours {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_livres_encours;
+    private Long idLivresEnCours;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_livre", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "idUtilisateur", nullable = false)
+    private Utilisateur utilisateur; // Vous devez avoir une classe Utilisateur
+
+    @ManyToOne
+    @JoinColumn(name = "idLivre", nullable = false)
     private Livres livre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_utilisateur", nullable = false)
-    private Utilisateur utilisateur;
+    private Long progression;
 
     // Constructeurs
     public Livresencours() {
     }
 
-    public Livresencours(Livres livre, Utilisateur utilisateur) {
+    public Livresencours(Livres livre, Utilisateur utilisateur, Long progression) {
         this.livre = livre;
         this.utilisateur = utilisateur;
+        this.progression = progression;
     }
 
-    // Getters et Setters
-    public Long getId_livres_encours() {
-        return id_livres_encours;
+    public Long getIdLivresEnCours() {
+        return idLivresEnCours;
     }
 
-    public void setId_livres_encours(Long id_livres_encours) {
-        this.id_livres_encours = id_livres_encours;
+    public void setIdLivresEnCours(Long idLivresEnCours) {
+        this.idLivresEnCours = idLivresEnCours;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public Livres getLivre() {
@@ -43,11 +52,11 @@ public class Livresencours {
         this.livre = livre;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Long getProgression() {
+        return progression;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setProgression(Long progression) {
+        this.progression = progression;
     }
 }
