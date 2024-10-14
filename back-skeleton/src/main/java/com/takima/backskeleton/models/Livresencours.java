@@ -1,6 +1,6 @@
 package com.takima.backskeleton.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Livresencours {

@@ -1,22 +1,26 @@
 package com.takima.backskeleton;
 
-import com.takima.backskeleton.dao.LivreDAO;
+import com.takima.backskeleton.dao.LivreDao;
+import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Livres;
+import com.takima.backskeleton.services.LivreService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDate;
 
 @SpringBootApplication
 public class BackSkeletonApplication {
 
+	private final LivreService livreService;
+	@Autowired BackSkeletonApplication(LivreService livreService){
+		this.livreService = livreService;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(BackSkeletonApplication.class, args);
-
-		Livres livre = new Livres("bob", "bib", "bobo", "aaa", LocalDate.parse("2002-05-02"),LocalDate.parse("2002-05-01"), 5.0);
-		System.out.println(livre.toString());
-
-
 	}
 
 }

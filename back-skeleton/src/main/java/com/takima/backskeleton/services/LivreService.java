@@ -1,25 +1,24 @@
-//package com.takima.backskeleton.service;
-//
-//import java.util.List;
-//
-//import com.takima.backskeleton.dao.LivreDao;
-//import com.takima.backskeleton.exeptions.DaoException;
-//import com.takima.backskeleton.exeptions.ServiceException;
-//import com.takima.backskeleton.models.Livres;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class LivreService {
-//
-//    private final LivreDao livreDao;
-//
-//    @Autowired
-//    public LivreService(LivreDao livreDao) {
-//        this.livreDao = livreDao;
-//    }
-//
-//    // Méthode pour créer un livre
+package com.takima.backskeleton.services;
+
+import java.util.List;
+
+import com.takima.backskeleton.dao.LivreDao;
+import com.takima.backskeleton.exceptions.DaoException;
+import com.takima.backskeleton.exceptions.ServiceException;
+import com.takima.backskeleton.models.Livres;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class LivreService{
+
+    private final LivreDao livreDao;
+
+    public LivreService(LivreDao livreDao) {
+        this.livreDao = livreDao;
+    }
+
+    // Méthode pour créer un livre
 //    public long create(Livres livre) throws ServiceException {
 //        if (livre.getTitre() == null || livre.getTitre().isEmpty()) {
 //            throw new ServiceException("Le titre du livre ne peut pas être vide.");
@@ -33,19 +32,16 @@
 //            throw new ServiceException("La date de parution du livre est requise.");
 //        }
 //
-//        try {
-//            livreDao.create(livre);
-//            return livre.getId_livre();
-//        } catch (DaoException e) {
-//            throw new ServiceException("Erreur lors de la création du livre: " + e.getMessage(), e);
-//        }
+//        livreDao.creerLivre(livre);
+//        return livre.getId_livre();
 //    }
+
+//
 //
 //    // Méthode pour supprimer un livre
-//    public long delete(Livres livre) throws ServiceException {
+//    public void delete(Livres livre) {
 //        try {
 //            livreDao.delete(livre);
-//            return livre.getId_livre();
 //        } catch (DaoException e) {
 //            throw new ServiceException("Erreur lors de la suppression du livre: " + e.getMessage(), e);
 //        }
@@ -65,17 +61,13 @@
 //    }
 //
 //    // Méthode pour obtenir tous les livres
-//    public List<Livres> findAll() throws ServiceException {
-//        try {
-//            List<Livres> livres = livreDao.findAll();
-//            if (livres != null && !livres.isEmpty()) {
-//                return livres;
-//            }
-//            throw new ServiceException("Aucun livre trouvé dans la base de données.");
-//        } catch (DaoException e) {
-//            throw new ServiceException("Erreur lors de la récupération des livres: " + e.getMessage(), e);
-//        }
-//    }
+    public List<Livres> findAll() throws ServiceException {
+        List<Livres> livres = livreDao.findAll();
+        if (livres != null && !livres.isEmpty()) {
+            return livres;
+        }
+        throw new ServiceException("Aucun livre trouvé dans la base de données.");
+    }
 //
 //    // Méthode pour compter le nombre de livres
 //    public long count() throws ServiceException {
@@ -124,6 +116,6 @@
 //            throw new ServiceException("Erreur lors de la recherche des livres par auteur: " + e.getMessage(), e);
 //        }
 //    }
-//}
-//
-//}
+}
+
+
