@@ -1,6 +1,8 @@
 package com.takima.backskeleton.controllers;
 
+import com.takima.backskeleton.DTO.CommentairesDto;
 import com.takima.backskeleton.exceptions.DaoException;
+import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Commentaires;
 import com.takima.backskeleton.services.CommentairesService;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,8 @@ public class CommentairesController {
     }
 
     @PostMapping("/create")
-    public Commentaires createCommentaire(@RequestBody Commentaires commentaire) throws DaoException {
-        return commentairesService.createCommentaire(commentaire);
+    public Commentaires createCommentaire(@RequestBody CommentairesDto commentaireDto) throws DaoException, ServiceException {
+        return commentairesService.createCommentaire(commentaireDto);
     }
     @DeleteMapping("/delete/{id}")
     public void deleteCommentaire(@PathVariable("id") Long id) throws DaoException {

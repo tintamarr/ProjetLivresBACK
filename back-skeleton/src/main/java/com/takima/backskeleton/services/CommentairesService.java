@@ -1,9 +1,16 @@
 package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.CommentairesDao;
+import com.takima.backskeleton.DAO.UtilisateurDao;
+import com.takima.backskeleton.DTO.CommentairesDto;
 import com.takima.backskeleton.exceptions.DaoException;
+import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Commentaires;
+import com.takima.backskeleton.models.Livres;
+import com.takima.backskeleton.models.Utilisateur;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.takima.backskeleton.dao.LivreDao;
 
 import java.util.List;
 
@@ -16,13 +23,31 @@ public class CommentairesService {
         this.commentairesDao = commentairesDao;
     }
 
+    @Autowired
+    private UtilisateurService utilisateurService;
 
-    public Commentaires createCommentaire(Commentaires commentaire) throws DaoException {
+    @Autowired
+    private LivreDao livreDao;
+
+
+    public Commentaires createCommentaire(CommentairesDto commentairesDto) throws ServiceException {
         try {
-            return commentairesDao.save(commentaire);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new DaoException();
+
+            Utilisateur utilisateur = utilisateurService.findByIdUtilisateur(commentairesDto.getIdUtilisateur());
+
+            Livres livre = livreDao.findByIdLivre(commentairesDto.getIdLivre());
+
+
+            Commentaires commentaire = new Commentaires();
+            commentaire.setUtilisateur(utilisateur);
+            commentaire.setLivres(livre);
+            commentaire.setStatut(commentairesDto.isStatut());
+            commentaire.setNoteUnique(commentairesDto.getNoteUnique());
+            commentaire.setCommentaire(commentairesDto.getCommentaire());
+            return commentairesDao.creerCommentaire(commentaire);
+
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la création du livre en cours : " + e.getMessage());
         }
     }
 

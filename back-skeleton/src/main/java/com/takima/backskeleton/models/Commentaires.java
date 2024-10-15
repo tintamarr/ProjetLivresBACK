@@ -76,5 +76,21 @@ public class Commentaires {
     public void setStatut(Boolean status) {
         this.statut = status;
     }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Livres getLivres() {
+        return livres;
+    }
+
+    public void setLivres(Livres livres) {
+        this.livres = livres;
+    }
 }
 
