@@ -10,4 +10,5 @@ import java.util.List;
 public interface UtilisateurDao extends JpaRepository<Utilisateur, Long> {
 
     List<Utilisateur> findByNom(String nom);
+
 }

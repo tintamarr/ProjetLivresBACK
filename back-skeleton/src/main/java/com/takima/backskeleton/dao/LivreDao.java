@@ -14,6 +14,8 @@ public interface LivreDao extends JpaRepository<Livres, Long> {
     List<Livres> findByEdition(String edition);
     List<Livres> findAll();
 
+    Livres findByIdLivre(long id);
+
     default Livres creerLivre(Livres livre) {
         return save(livre);
     }
