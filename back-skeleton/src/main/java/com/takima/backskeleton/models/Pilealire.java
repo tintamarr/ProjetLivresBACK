@@ -7,13 +7,13 @@ public class Pilealire {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_pile_a_lire;
+    private Long idPileALire;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_livre", nullable = false)
     private Livres livre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
@@ -27,12 +27,12 @@ public class Pilealire {
     }
 
     // Getters et Setters
-    public Long getId_pile_a_lire() {
-        return id_pile_a_lire;
+    public Long getIdPileALire() {
+        return idPileALire;
     }
 
-    public void setId_pile_a_lire(Long id_pile_a_lire) {
-        this.id_pile_a_lire = id_pile_a_lire;
+    public void setIdPileALire(Long id_pile_a_lire) {
+        this.idPileALire = id_pile_a_lire;
     }
 
     public Livres getLivre() {
