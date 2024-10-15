@@ -7,13 +7,13 @@ public class Livreslus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_livres_lus;
+    private Long idLivresLus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_livre", nullable = false)
     private Livres livre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
@@ -27,12 +27,12 @@ public class Livreslus {
     }
 
     // Getters et Setters
-    public Long getId_livres_lus() {
-        return id_livres_lus;
+    public Long getIdLivresLus() {
+        return idLivresLus;
     }
 
-    public void setId_livres_lus(Long id_livres_lus) {
-        this.id_livres_lus = id_livres_lus;
+    public void setIdLivresLus(Long id_livres_lus) {
+        this.idLivresLus = id_livres_lus;
     }
 
     public Livres getLivre() {

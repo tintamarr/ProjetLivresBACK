@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "utilisateurs")
 public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_utilisateur;
+    private Long idUtilisateur;
 
     private String nom;
     private String prenom;
@@ -29,12 +30,12 @@ public class Utilisateur {
     }
 
     // Getters et Setters
-    public Long getId_utilisateur() {
-        return id_utilisateur;
+    public Long getIdUtilisateur() {
+        return idUtilisateur;
     }
 
-    public void setId_utilisateur(Long id_utilisateur) {
-        this.id_utilisateur = id_utilisateur;
+    public void setIdUtilisateur(Long id_utilisateur) {
+        this.idUtilisateur = id_utilisateur;
     }
 
     public String getNom() {

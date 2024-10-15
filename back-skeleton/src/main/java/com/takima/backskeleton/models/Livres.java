@@ -12,7 +12,7 @@ public class Livres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_livre;
+    private Long idLivre;
 
     private String edition;
     private String titre;
@@ -40,7 +40,7 @@ public class Livres {
     @Override
     public String toString() {
         return "Livres{" +
-                "id_livre=" + id_livre +
+                "id_livre=" + idLivre +
                 ", edition='" + edition + '\'' +
                 ", titre='" + titre + '\'' +
                 ", auteur='" + auteur + '\'' +
@@ -52,12 +52,12 @@ public class Livres {
     }
 
     // Getters et Setters
-    public Long getId_livre() {
-        return id_livre;
+    public Long getIdLivre() {
+        return idLivre;
     }
 
-    public void setId_livre(Long id_livre) {
-        this.id_livre = id_livre;
+    public void setIdLivre(Long id_livre) {
+        this.idLivre = id_livre;
     }
 
     public String getEdition() {
