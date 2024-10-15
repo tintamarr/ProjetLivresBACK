@@ -6,19 +6,20 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "commentaires")
 public class Commentaires {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_commentaire;
+    private Long idCommentaire;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_livre", nullable = false)
-    private Livres livre;
+    private Livres livres;
 
     @Column(columnDefinition = "TEXT")
     private String commentaire;
@@ -26,46 +27,30 @@ public class Commentaires {
     @NotNull
     @Min(0)
     @Max(5)
-    private Integer note_unique;
+    private Integer noteUnique;
 
     @NotNull
-    private Boolean status;
+    private Boolean statut;
 
     // Constructeurs
     public Commentaires() {
     }
 
-    public Commentaires(Utilisateur utilisateur, Livres livre, String commentaire, Integer note_unique, Boolean status) {
+    public Commentaires(Utilisateur utilisateur, Livres livres, String commentaire, Integer note_unique, Boolean statut) {
         this.utilisateur = utilisateur;
-        this.livre = livre;
+        this.livres = livres;
         this.commentaire = commentaire;
-        this.note_unique = note_unique;
-        this.status = status;
+        this.noteUnique = note_unique;
+        this.statut = statut;
     }
 
     // Getters et Setters
-    public Long getId_commentaire() {
-        return id_commentaire;
+    public Long getIdCommentaire() {
+        return idCommentaire;
     }
 
-    public void setId_commentaire(Long id_commentaire) {
-        this.id_commentaire = id_commentaire;
-    }
-
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
-
-    public Livres getLivre() {
-        return livre;
-    }
-
-    public void setLivre(Livres livre) {
-        this.livre = livre;
+    public void setIdCommentaire(Long id_commentaire) {
+        this.idCommentaire = id_commentaire;
     }
 
     public String getCommentaire() {
@@ -76,20 +61,20 @@ public class Commentaires {
         this.commentaire = commentaire;
     }
 
-    public Integer getNote_unique() {
-        return note_unique;
+    public Integer getNoteUnique() {
+        return noteUnique;
     }
 
-    public void setNote_unique(Integer note_unique) {
-        this.note_unique = note_unique;
+    public void setNoteUnique(Integer note_unique) {
+        this.noteUnique = note_unique;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getStatut() {
+        return statut;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setStatut(Boolean status) {
+        this.statut = status;
     }
 }
 
