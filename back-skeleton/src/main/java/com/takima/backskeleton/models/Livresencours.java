@@ -6,14 +6,14 @@ import jakarta.persistence.*;
 public class Livresencours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLivresEnCours;
+    private Long idlivresencours;
 
     @ManyToOne
-    @JoinColumn(name = "idUtilisateur", nullable = false)
+    @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur; // Vous devez avoir une classe Utilisateur
 
     @ManyToOne
-    @JoinColumn(name = "idLivre", nullable = false)
+    @JoinColumn(name = "id_livre", nullable = false)
     private Livres livre;
 
     private Long progression;
@@ -28,12 +28,12 @@ public class Livresencours {
         this.progression = progression;
     }
 
-    public Long getIdLivresEnCours() {
-        return idLivresEnCours;
+    public Long getIdlivresencours() {
+        return idlivresencours;
     }
 
-    public void setIdLivresEnCours(Long idLivresEnCours) {
-        this.idLivresEnCours = idLivresEnCours;
+    public void setIdlivresencours(Long idLivresEnCours) {
+        this.idlivresencours = idLivresEnCours;
     }
 
     public Utilisateur getUtilisateur() {
