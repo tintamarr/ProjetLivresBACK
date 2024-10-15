@@ -10,7 +10,8 @@ import com.takima.backskeleton.models.Livres;
 import com.takima.backskeleton.models.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.takima.backskeleton.dao.LivreDao;
+import com.takima.backskeleton.DAO.LivreDao;
+
 
 import java.util.List;
 
