@@ -1,14 +1,14 @@
 package com.takima.backskeleton.services;
 
-import com.takima.backskeleton.dao.LivreDao;
-import com.takima.backskeleton.dao.LivresEnCoursDao;
-import com.takima.backskeleton.dao.UtilisateurDao;
+import com.takima.backskeleton.DAO.LivreDao;
+import com.takima.backskeleton.DAO.LivresEnCoursDao;
+import com.takima.backskeleton.DAO.UtilisateurDao;
 import com.takima.backskeleton.exceptions.DaoException;
 import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Livres;
 import com.takima.backskeleton.models.Livresencours;
 import com.takima.backskeleton.models.Utilisateur;
-import com.takima.backskeleton.models.dto.LivresEnCoursDto;
+import com.takima.backskeleton.DTO.LivresEnCoursDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

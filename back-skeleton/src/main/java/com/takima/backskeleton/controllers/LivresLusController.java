@@ -1,10 +1,8 @@
 package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.exceptions.ServiceException;
-import com.takima.backskeleton.models.Livresencours;
 import com.takima.backskeleton.models.Livreslus;
-import com.takima.backskeleton.models.dto.LivresEnCoursDto;
-import com.takima.backskeleton.models.dto.LivresLusDto;
+import com.takima.backskeleton.DTO.LivresLusDto;
 import com.takima.backskeleton.services.LivresLusService;
 import org.springframework.web.bind.annotation.*;
 

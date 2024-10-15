@@ -2,7 +2,7 @@ package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Pilealire;
-import com.takima.backskeleton.models.dto.PileALireDto;
+import com.takima.backskeleton.DTO.PileALireDto;
 import com.takima.backskeleton.services.PileALireService;
 import org.springframework.web.bind.annotation.*;
 

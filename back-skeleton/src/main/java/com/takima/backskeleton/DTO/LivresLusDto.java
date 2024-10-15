@@ -1,8 +1,8 @@
-package com.takima.backskeleton.models.dto;
+package com.takima.backskeleton.DTO;
 
-public class PileALireDto {
-    private Long idUtilisateur;
-    private Long idLivre;
+public class LivresLusDto {
+        private Long idUtilisateur;
+        private Long idLivre;
 
 
     public Long getIdUtilisateur() {
@@ -20,4 +20,5 @@ public class PileALireDto {
     public void setIdLivre(Long idLivre) {
         this.idLivre = idLivre;
     }
+
 }

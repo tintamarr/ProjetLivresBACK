@@ -1,4 +1,4 @@
-package com.takima.backskeleton.models.dto;
+package com.takima.backskeleton.DTO;
 
 public class LivresEnCoursDto {
         private Long idUtilisateur;

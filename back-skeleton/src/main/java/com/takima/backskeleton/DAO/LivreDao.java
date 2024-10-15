@@ -1,77 +1,76 @@
-package com.takima.backskeleton.dao;
+package com.takima.backskeleton.DAO;
 
 import com.takima.backskeleton.exceptions.DaoException;
-import com.takima.backskeleton.models.Pilealire;
+import com.takima.backskeleton.models.Livres;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PileALireDao extends JpaRepository<Pilealire, Long> {
+public interface LivreDao extends JpaRepository<Livres, Long> {
 
-    default List<Pilealire> findTousLesPileALire() throws DaoException {
+    default List<Livres> findLivreParTitre(String titre) throws DaoException {
         try {
-            return findAll();
+            return findByTitre(titre);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    default List<Pilealire> findPileALireParUtilisateur(Long id_utilisateur) throws DaoException {
+    List<Livres> findByTitre(String titre);
+
+    default List<Livres> findLivreParAuteur(String auteur) throws DaoException {
         try {
-            return findByUtilisateurIdUtilisateur(id_utilisateur);
+            return findByAuteur(auteur);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
+    List<Livres> findByAuteur(String auteur);
+    default List<Livres> findLivreParEdition(String edition) throws DaoException {
+        try {
+            return findByEdition(edition);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
+    List<Livres> findByEdition(String edition);
+
+    List<Livres> findAll();
+
+    default Livres findLivreParId(Long id_livre) throws DaoException {
+        try {
+            return findByIdLivre(id_livre);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    List<Pilealire> findByUtilisateurIdUtilisateur(Long idUtilisateur);
+    Livres findByIdLivre(long idLivre);
 
-    default List<Pilealire> findPileALireParLivre(Long id_livre) throws DaoException {
+    default Livres creerLivre(Livres livre) throws DaoException {
         try {
-            return findByLivreIdLivre(id_livre);
+            return save(livre);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
-
-    List<Pilealire> findByLivreIdLivre(Long idLivre);
-
-    default Pilealire findPileALireParId(Long id) throws DaoException {
-        try {
-            return findByIdPileALire(id);
-        } catch (Exception e) {
+    default void supprimerLivre(Long id_livre) throws DaoException {
+        try{
+            deleteById(id_livre);
+        }catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    Pilealire findByIdPileALire(Long id);
-
-
-    default Pilealire creerPileALire(Pilealire pilealire) throws DaoException {
-        try {
-            return save(pilealire);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new DaoException();
-        }
-    }
-
-    default void supprimerPileALire(Long id_pile_alire) throws DaoException {
-        try {
-            deleteById(id_pile_alire);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new DaoException();
-        }
-    }
-
-    default long compterPileALire() throws DaoException {
+    default long compterLivres() throws DaoException {
         try {
             return count();
         } catch (Exception e) {
@@ -79,5 +78,6 @@ public interface PileALireDao extends JpaRepository<Pilealire, Long> {
             throw new DaoException();
         }
     }
-}
 
+
+}

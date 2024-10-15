@@ -1,76 +1,77 @@
-package com.takima.backskeleton.dao;
+package com.takima.backskeleton.DAO;
 
 import com.takima.backskeleton.exceptions.DaoException;
-import com.takima.backskeleton.models.Livres;
+import com.takima.backskeleton.models.Livreslus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface LivreDao extends JpaRepository<Livres, Long> {
+public interface LivresLusDao extends JpaRepository<Livreslus, Long> {
 
-    default List<Livres> findLivreParTitre(String titre) throws DaoException {
+    default List<Livreslus> findTousLesLivresLus() throws DaoException {
         try {
-            return findByTitre(titre);
+            return findAll();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    List<Livres> findByTitre(String titre);
-
-    default List<Livres> findLivreParAuteur(String auteur) throws DaoException {
+    default List<Livreslus> findLivresLusParUtilisateur(Long id_utilisateur) throws DaoException {
         try {
-            return findByAuteur(auteur);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new DaoException();
-        }
-    }
-    List<Livres> findByAuteur(String auteur);
-    default List<Livres> findLivreParEdition(String edition) throws DaoException {
-        try {
-            return findByEdition(edition);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new DaoException();
-        }
-    }
-    List<Livres> findByEdition(String edition);
-
-    List<Livres> findAll();
-
-    default Livres findLivreParId(Long id_livre) throws DaoException {
-        try {
-            return findByIdLivre(id_livre);
+            return findByUtilisateurIdUtilisateur(id_utilisateur);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    Livres findByIdLivre(long idLivre);
+    List<Livreslus> findByUtilisateurIdUtilisateur(Long idUtilisateur);
 
-    default Livres creerLivre(Livres livre) throws DaoException {
+    default List<Livreslus> findLivresLusParLivre(Long id_livre) throws DaoException {
         try {
-            return save(livre);
+            return findByLivreIdLivre(id_livre);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
-    default void supprimerLivre(Long id_livre) throws DaoException {
-        try{
-            deleteById(id_livre);
-        }catch (Exception e) {
+
+    List<Livreslus> findByLivreIdLivre(Long idLivre);
+
+    default Livreslus findLivreLusParId(Long id) throws DaoException {
+        try {
+            return findByIdLivresLus(id);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new DaoException();
         }
     }
 
-    default long compterLivres() throws DaoException {
+    Livreslus findByIdLivresLus(Long id);
+
+
+    default Livreslus creerLivresLus(Livreslus livreslus) throws DaoException {
+        try {
+            return save(livreslus);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
+
+    default void supprimerLivreLus(Long id_livres_lus) throws DaoException {
+        try {
+            deleteById(id_livres_lus);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
+
+    default long compterLivresLus() throws DaoException {
         try {
             return count();
         } catch (Exception e) {
@@ -78,6 +79,4 @@ public interface LivreDao extends JpaRepository<Livres, Long> {
             throw new DaoException();
         }
     }
-
-
 }

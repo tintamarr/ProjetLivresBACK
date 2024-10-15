@@ -2,7 +2,7 @@ package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Livresencours;
-import com.takima.backskeleton.models.dto.LivresEnCoursDto;
+import com.takima.backskeleton.DTO.LivresEnCoursDto;
 import com.takima.backskeleton.services.LivresEnCoursService;
 import org.springframework.web.bind.annotation.*;
 
