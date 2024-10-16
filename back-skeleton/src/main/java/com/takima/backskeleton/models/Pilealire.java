@@ -17,7 +17,7 @@ public class Pilealire {
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
-    // Constructeurs
+
     public Pilealire() {
     }
 
@@ -26,7 +26,7 @@ public class Pilealire {
         this.utilisateur = utilisateur;
     }
 
-    // Getters et Setters
+
     public Long getIdPileALire() {
         return idPileALire;
     }

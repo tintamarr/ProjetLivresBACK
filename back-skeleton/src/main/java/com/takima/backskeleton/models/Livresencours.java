@@ -18,7 +18,7 @@ public class Livresencours {
 
     private Long progression;
 
-    // Constructeurs
+
     public Livresencours() {
     }
 
