@@ -7,6 +7,7 @@ import com.takima.backskeleton.exceptions.DaoException;
 import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +22,7 @@ public class LivreService{
     @Autowired
     private PileALireService pileALireService;
     @Autowired
+    @Lazy
     private CommentairesService commentairesService;
 
     public LivreService(LivreDao livreDao) {
@@ -68,7 +70,6 @@ public class LivreService{
         try {
 
             //TODO : faire pareil pour utilisateur
-            //TODO : regarder ce qui se passe si la liste renvoyée est nulle : pour l'instant, ça fait une erreur
             List<Livresencours> livresencours = livresEnCoursService.findByLivre(id_livre);
             if (livresencours != null){
                 livresencours.forEach(livresencours1 -> {

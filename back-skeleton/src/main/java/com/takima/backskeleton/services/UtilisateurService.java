@@ -2,7 +2,10 @@ package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.UtilisateurDao;
 import com.takima.backskeleton.exceptions.DaoException;
-import com.takima.backskeleton.models.Utilisateur;
+import com.takima.backskeleton.exceptions.ServiceException;
+import com.takima.backskeleton.models.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +14,15 @@ import java.util.List;
 public class UtilisateurService {
 
     private final UtilisateurDao utilisateurDao;
+    @Autowired
+    private LivresEnCoursService livresEnCoursService;
+    @Autowired
+    private LivresLusService livresLusService;
+    @Autowired
+    private PileALireService pileALireService;
+    @Autowired
+    @Lazy
+    private CommentairesService commentairesService;
 
     public UtilisateurService(UtilisateurDao utilisateurDao) {
         this.utilisateurDao = utilisateurDao;
@@ -27,6 +39,48 @@ public class UtilisateurService {
 
     public void deleteByIdUtilisateur(Long id) throws DaoException {
         try {
+            List<Livresencours> livresencours = livresEnCoursService.findByUtilisateur(id);
+            if (livresencours != null){
+                livresencours.forEach(livresencours1 -> {
+                    try {
+                        livresEnCoursService.deleteLivreEnCours(livresencours1.getIdlivresencours());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            List<Livreslus> livreslus = livresLusService.findByUtilisateur(id);
+            if (livreslus != null){
+                livreslus.forEach(livreslus1 -> {
+                    try {
+                        livresLusService.deleteLivresLus(livreslus1.getIdLivresLus());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            List<Pilealire> pilealires = pileALireService.findByUtilisateur(id);
+            if (pilealires != null){
+                pilealires.forEach(pilealire1 -> {
+                    try {
+                        pileALireService.deletePileALire(pilealire1.getIdPileALire());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+            List<Commentaires> commentaires = commentairesService.findByUtilisateurId(id);
+            if (commentaires != null){
+                commentaires.forEach(commentaires1 -> {
+                    try {
+                        commentairesService.deleteCommentaire(commentaires1.getIdCommentaire());
+                    } catch (DaoException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
             utilisateurDao.deleteById(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -92,10 +92,7 @@ public class PileALireService {
     public List<Pilealire> findByUtilisateur(Long idUtilisateur) throws ServiceException {
         try {
             List<Pilealire> pileALire = pileALireDao.findPileALireParUtilisateur(idUtilisateur);
-            if (pileALire != null && !pileALire.isEmpty()) {
-                return pileALire;
-            }
-            throw new ServiceException("Aucun livre en cours trouvé pour l'utilisateur avec l'ID : " + idUtilisateur);
+            return (pileALire != null) ? pileALire : new ArrayList<>();
         } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la recherche des livres en cours par utilisateur : " + e.getMessage());
         }
