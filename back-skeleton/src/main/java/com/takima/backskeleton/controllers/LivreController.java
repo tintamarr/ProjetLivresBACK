@@ -42,6 +42,11 @@ public class LivreController {
     public List<Livres> findByEdition(@PathVariable("edition") String edition) throws ServiceException {
         return livreService.findByEdition(edition);
     }
+
+    @GetMapping("/genre/{genre}")
+    public List<Livres> findByGenre(@PathVariable("genre") String genre) throws ServiceException {
+        return livreService.findByGenre(genre);
+    }
     @GetMapping("/id/{id}")
     public Livres findById(@PathVariable("id") Long id) throws ServiceException {
         return livreService.findById(id);
