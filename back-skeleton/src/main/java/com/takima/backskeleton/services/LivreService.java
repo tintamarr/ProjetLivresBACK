@@ -107,6 +107,18 @@ public class LivreService{
             throw new ServiceException("Erreur lors de la recherche des livres par edition: " + e.getMessage());
         }
     }
+
+    public List<Livres> findByGenre(String genre) throws ServiceException {
+        try {
+            List<Livres> livres = livreDao.findLivreParGenre(genre);
+            if (livres != null && !livres.isEmpty()) {
+                return livres;
+            }
+            throw new ServiceException("Aucun livre trouvé avec le genre : " + genre);
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la recherche des livres par genre: " + e.getMessage());
+        }
+    }
 }
 
 

@@ -32,7 +32,6 @@ public class Commentaires {
     @NotNull
     private Boolean statut;
 
-    // Constructeurs
     public Commentaires() {
     }
 
@@ -44,7 +43,6 @@ public class Commentaires {
         this.statut = statut;
     }
 
-    // Getters et Setters
     public Long getIdCommentaire() {
         return idCommentaire;
     }

@@ -17,7 +17,7 @@ public class Livreslus {
     @JoinColumn(name = "id_utilisateur", nullable = false)
     private Utilisateur utilisateur;
 
-    // Constructeurs
+
     public Livreslus() {
     }
 
@@ -26,7 +26,7 @@ public class Livreslus {
         this.utilisateur = utilisateur;
     }
 
-    // Getters et Setters
+
     public Long getIdLivresLus() {
         return idLivresLus;
     }

@@ -39,6 +39,15 @@ public interface LivreDao extends JpaRepository<Livres, Long> {
         }
     }
     List<Livres> findByEdition(String edition);
+    default List<Livres> findLivreParGenre(String genre) throws DaoException {
+        try {
+            return findByGenre(genre);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
+    List<Livres> findByGenre(String edition);
 
     List<Livres> findAll();
 

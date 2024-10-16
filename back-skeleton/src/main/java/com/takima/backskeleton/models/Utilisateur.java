@@ -17,19 +17,20 @@ public class Utilisateur {
     private String mail;
     private LocalDate datenaissance;
 
-    // Constructeurs
+    private int photo_profil;
+
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String pseudo, String mail, LocalDate datenaissance) {
+    public Utilisateur(String nom, String prenom, String pseudo, String mail, LocalDate datenaissance, int photo_profil) {
         this.nom = nom;
         this.prenom = prenom;
         this.pseudo = pseudo;
         this.mail = mail;
         this.datenaissance = datenaissance;
+        this.photo_profil = photo_profil;
     }
 
-    // Getters et Setters
     public Long getIdUtilisateur() {
         return idUtilisateur;
     }
@@ -76,5 +77,13 @@ public class Utilisateur {
 
     public void setDatenaissance(LocalDate datenaissance) {
         this.datenaissance = datenaissance;
+    }
+
+    public int getPhoto_profil() {
+        return photo_profil;
+    }
+
+    public void setPhoto_profil(int photo_profil) {
+        this.photo_profil = photo_profil;
     }
 }

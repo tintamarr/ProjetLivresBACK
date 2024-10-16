@@ -22,12 +22,14 @@ public class Livres {
     private LocalDate date_parution;
     private LocalDate date_ajout;
     private Double note;
+    private String couverture;
+    private String genre;
+    private int nombre_pages;
 
-    // Constructeurs
     public Livres() {
     }
 
-    public Livres(String edition, String titre, String auteur, String resume, LocalDate date_parution, LocalDate date_ajout, Double note) {
+    public Livres(String edition, String titre, String auteur, String resume, LocalDate date_parution, LocalDate date_ajout, Double note, String couverture, String genre, int nombre_pages) {
         this.edition = edition;
         this.titre = titre;
         this.auteur = auteur;
@@ -35,23 +37,35 @@ public class Livres {
         this.date_parution = date_parution;
         this.date_ajout = date_ajout;
         this.note = note;
+        this.couverture = couverture;
+        this.genre = genre;
+        this.nombre_pages = nombre_pages;
     }
 
-    @Override
-    public String toString() {
-        return "Livres{" +
-                "id_livre=" + idLivre +
-                ", edition='" + edition + '\'' +
-                ", titre='" + titre + '\'' +
-                ", auteur='" + auteur + '\'' +
-                ", resume='" + resume + '\'' +
-                ", date_parution=" + date_parution +
-                ", date_ajout=" + date_ajout +
-                ", note=" + note +
-                '}';
+    public String getCouverture() {
+        return couverture;
     }
 
-    // Getters et Setters
+    public void setCouverture(String couverture) {
+        this.couverture = couverture;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public int getNombre_pages() {
+        return nombre_pages;
+    }
+
+    public void setNombre_pages(int nombre_pages) {
+        this.nombre_pages = nombre_pages;
+    }
+
     public Long getIdLivre() {
         return idLivre;
     }
