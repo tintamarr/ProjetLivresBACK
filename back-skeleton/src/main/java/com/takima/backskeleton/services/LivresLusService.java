@@ -12,6 +12,7 @@ import com.takima.backskeleton.DTO.LivresLusDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -103,10 +104,7 @@ public class LivresLusService {
     public List<Livreslus> findByLivre(Long idLivre) throws ServiceException {
         try {
             List<Livreslus> livresLus = livresLusDao.findLivresLusParLivre(idLivre);
-            if (livresLus != null && !livresLus.isEmpty()) {
-                return livresLus;
-            }
-            throw new ServiceException("Aucun livre en cours trouvé pour le livre avec l'ID : " + idLivre);
+            return (livresLus != null) ? livresLus : new ArrayList<>();
         } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la recherche des livres en cours par livre : " + e.getMessage());
         }
