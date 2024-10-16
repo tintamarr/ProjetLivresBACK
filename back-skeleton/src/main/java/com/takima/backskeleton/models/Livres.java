@@ -24,12 +24,12 @@ public class Livres {
     private Double note;
     private String couverture;
     private String genre;
-    private String nombre_pages;
+    private int nombre_pages;
 
     public Livres() {
     }
 
-    public Livres(String edition, String titre, String auteur, String resume, LocalDate date_parution, LocalDate date_ajout, Double note, String couverture, String genre, String nombre_pages) {
+    public Livres(String edition, String titre, String auteur, String resume, LocalDate date_parution, LocalDate date_ajout, Double note, String couverture, String genre, int nombre_pages) {
         this.edition = edition;
         this.titre = titre;
         this.auteur = auteur;
@@ -58,11 +58,11 @@ public class Livres {
         this.genre = genre;
     }
 
-    public String getNombre_pages() {
+    public int getNombre_pages() {
         return nombre_pages;
     }
 
-    public void setNombre_pages(String nombre_pages) {
+    public void setNombre_pages(int nombre_pages) {
         this.nombre_pages = nombre_pages;
     }
 
