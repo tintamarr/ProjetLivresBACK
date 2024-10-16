@@ -12,6 +12,7 @@ import com.takima.backskeleton.DTO.PileALireDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -91,10 +92,7 @@ public class PileALireService {
     public List<Pilealire> findByUtilisateur(Long idUtilisateur) throws ServiceException {
         try {
             List<Pilealire> pileALire = pileALireDao.findPileALireParUtilisateur(idUtilisateur);
-            if (pileALire != null && !pileALire.isEmpty()) {
-                return pileALire;
-            }
-            throw new ServiceException("Aucun livre en cours trouvé pour l'utilisateur avec l'ID : " + idUtilisateur);
+            return (pileALire != null) ? pileALire : new ArrayList<>();
         } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la recherche des livres en cours par utilisateur : " + e.getMessage());
         }
@@ -103,11 +101,8 @@ public class PileALireService {
     public List<Pilealire> findByLivre(Long idLivre) throws ServiceException {
         try {
             List<Pilealire> pileALire = pileALireDao.findPileALireParLivre(idLivre);
-            if (pileALire != null && !pileALire.isEmpty()) {
-                return pileALire;
-            }
-            throw new ServiceException("Aucun livre en cours trouvé pour le livre avec l'ID : " + idLivre);
-        } catch (DaoException e) {
+            return (pileALire != null) ? pileALire : new ArrayList<>();
+            } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la recherche des livres en cours par livre : " + e.getMessage());
         }
     }
