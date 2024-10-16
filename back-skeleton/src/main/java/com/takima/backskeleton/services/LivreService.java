@@ -5,13 +5,23 @@ import java.util.List;
 import com.takima.backskeleton.DAO.LivreDao;
 import com.takima.backskeleton.exceptions.DaoException;
 import com.takima.backskeleton.exceptions.ServiceException;
-import com.takima.backskeleton.models.Livres;
+import com.takima.backskeleton.models.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LivreService{
 
     private final LivreDao livreDao;
+
+    @Autowired
+    private LivresEnCoursService livresEnCoursService;
+    @Autowired
+    private LivresLusService livresLusService;
+    @Autowired
+    private PileALireService pileALireService;
+    @Autowired
+    private CommentairesService commentairesService;
 
     public LivreService(LivreDao livreDao) {
         this.livreDao = livreDao;
@@ -56,6 +66,51 @@ public class LivreService{
 
     public void deleteLivre(Long id_livre) throws ServiceException {
         try {
+
+            //TODO : faire pareil pour utilisateur
+            //TODO : regarder ce qui se passe si la liste renvoyée est nulle : pour l'instant, ça fait une erreur
+            List<Livresencours> livresencours = livresEnCoursService.findByLivre(id_livre);
+            if (livresencours != null){
+                livresencours.forEach(livresencours1 -> {
+                    try {
+                        livresEnCoursService.deleteLivreEnCours(livresencours1.getIdlivresencours());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            List<Livreslus> livreslus = livresLusService.findByLivre(id_livre);
+            if (livreslus != null){
+                livreslus.forEach(livreslus1 -> {
+                    try {
+                        livresLusService.deleteLivresLus(livreslus1.getIdLivresLus());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            List<Pilealire> pilealires = pileALireService.findByLivre(id_livre);
+            if (pilealires != null){
+                pilealires.forEach(pilealire1 -> {
+                    try {
+                        pileALireService.deletePileALire(pilealire1.getIdPileALire());
+                    } catch (ServiceException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+            List<Commentaires> commentaires = commentairesService.findByLivreId(id_livre);
+            if (commentaires != null){
+                commentaires.forEach(commentaires1 -> {
+                    try {
+                        commentairesService.deleteCommentaire(commentaires1.getIdCommentaire());
+                    } catch (DaoException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
             livreDao.supprimerLivre(id_livre);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
