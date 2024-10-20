@@ -1,8 +1,10 @@
 package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.exceptions.DaoException;
+import com.takima.backskeleton.exceptions.ServiceException;
 import com.takima.backskeleton.models.Utilisateur;
 import com.takima.backskeleton.services.UtilisateurService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,4 +50,13 @@ public class UtilisateurController {
     public List<Utilisateur> getUtilisateurByNom(@PathVariable("nom") String nom) throws DaoException {
         return utilisateurService.findByNomUtilisateur(nom);
     }
+
+    @PutMapping("/update/{id}")
+    public Utilisateur updateUtilisateur(
+            @PathVariable Long id,
+            @RequestBody Utilisateur utilisateurDetails) throws ServiceException, DaoException {
+            return utilisateurService.updateUtilisateurById(id, utilisateurDetails);
+    }
+
+
 }
