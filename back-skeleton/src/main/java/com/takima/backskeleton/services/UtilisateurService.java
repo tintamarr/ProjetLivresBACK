@@ -125,4 +125,24 @@ public class UtilisateurService {
             throw new DaoException();
         }
     }
+
+    public Utilisateur updateUtilisateurById(Long id, Utilisateur utilisateurDetails) throws DaoException, ServiceException {
+        try {
+            Utilisateur utilisateur = utilisateurDao.findById(id)
+                    .orElseThrow(() -> new ServiceException("Utilisateur avec ID " + id + " non trouvé"));
+
+            utilisateur.setPseudo(utilisateurDetails.getPseudo());
+            utilisateur.setNom(utilisateurDetails.getNom());
+            utilisateur.setPrenom(utilisateurDetails.getPrenom());
+            utilisateur.setMail(utilisateurDetails.getMail());
+            utilisateur.setDatenaissance(utilisateurDetails.getDatenaissance());
+            utilisateur.setPhoto_profil(utilisateurDetails.getPhoto_profil());
+
+            return utilisateurDao.save(utilisateur);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new ServiceException("Erreur lors de la mise à jour de l'utilisateur");
+        }
+    }
+
 }
