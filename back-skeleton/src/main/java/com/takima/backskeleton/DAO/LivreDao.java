@@ -3,6 +3,8 @@ package com.takima.backskeleton.DAO;
 import com.takima.backskeleton.exceptions.DaoException;
 import com.takima.backskeleton.models.Livres;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -88,5 +90,16 @@ public interface LivreDao extends JpaRepository<Livres, Long> {
         }
     }
 
+    @Query("SELECT l FROM Livres l ORDER BY l.date_ajout DESC")
+    List<Livres> findDerniersLivresLimit10(Pageable pageable);
+
+    default List<Livres> findDerniersLivres() throws DaoException {
+        try {
+            return findDerniersLivresLimit10(Pageable.ofSize(10));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new DaoException();
+        }
+    }
 
 }

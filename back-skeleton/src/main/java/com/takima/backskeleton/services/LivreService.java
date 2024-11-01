@@ -175,6 +175,14 @@ public class LivreService{
             throw new ServiceException("Erreur lors de la recherche des livres par genre: " + e.getMessage());
         }
     }
+
+    public List<Livres> findDerniersLivres() throws ServiceException {
+        try {
+            return livreDao.findDerniersLivres();
+        } catch (DaoException e) {
+            throw new ServiceException("Erreur lors de la récupération des derniers livres: " + e.getMessage());
+        }
+    }
 }
 
 

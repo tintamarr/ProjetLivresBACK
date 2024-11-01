@@ -55,6 +55,11 @@ public class LivreController {
     public long countLivres() throws ServiceException {
         return livreService.countLivre();
     }
+
+    @GetMapping("/recents")
+    public List<Livres> getDerniersLivres() throws ServiceException {
+        return livreService.findDerniersLivres();
+    }
 }
 
 

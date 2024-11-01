@@ -7,9 +7,8 @@ Pour appeler le back par des requetes :
 2. Aller sur le lien suivant :
    http://localhost:8080/swagger-ui/index.html
 
-
-
-
+   
+## Explications pour lancer le back dans l'autre read me
 
 
 
